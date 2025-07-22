@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parv Arora | AI Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #667eea;
+      --secondary-color: #764ba2;
+      --accent-color: #f093fb;
+      --dark-color: #0f0f23;
+      --darker-color: #0a0a1a;
+      --light-color: #ffffff;
+      --card-bg: #1a1a2e;
+      --text-dark: #e2e8f0;
+      --text-light: #a0aec0;
+      --text-muted: #718096;
+      --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --card-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+      --border-color: rgba(102, 126, 234, 0.2);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.7;
+      color: var(--text-dark);
+      background: var(--darker-color);
+      overflow-x: hidden;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--darker-color) 0%, var(--dark-color) 50%, var(--darker-color) 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--light-color);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 50%, rgba(240, 147, 251, 0.05) 0%, transparent 50%);
+      opacity: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #fff, #f093fb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slideInDown 1s ease-out;
+    }
+
+    .hero .subtitle {
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      animation: slideInUp 1s ease-out 0.2s both;
+    }
+
+    .hero .location {
+      font-size: 1.1rem;
+      opacity: 0.8;
+      margin-bottom: 3rem;
+      animation: fadeIn 1s ease-out 0.4s both;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      animation: fadeIn 1s ease-out 0.6s both;
+    }
+
+    .social-links a {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light-color);
+      font-size: 1.5rem;
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      transform: translateY(-10px) scale(1.1);
+      background: rgba(255, 255, 255, 0.2);
+      border-color: var(--accent-color);
+      box-shadow: 0 20px 40px rgba(240, 147, 251, 0.3);
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 1000;
+      display: flex;
+      gap: 1rem;
+      animation: slideInRight 1s ease-out 0.8s both;
+    }
+
+    .nav a {
+      padding: 0.8rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      color: var(--light-color);
+      text-decoration: none;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+
+    .nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Sections */
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 4rem;
+      background: var(--bg-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--bg-gradient);
+      border-radius: 2px;
+    }
+
+    /* About Section */
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-text {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      color: var(--text-light);
+      margin-bottom: 3rem;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .skill-card {
+      background: var(--card-gradient);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(102, 126, 234, 0.25);
+      border-color: var(--primary-color);
+    }
+
+    .skill-category {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .skill-items {
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
+      background: var(--card-gradient);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      position: relative;
+      border: 1px solid var(--border-color);
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--bg-gradient);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(102, 126, 234, 0.25);
+      border-color: var(--primary-color);
+    }
+
+    .project-content {
+      padding: 2.5rem;
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .project-list {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .project-list li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .project-list li::before {
+      content: '⚡';
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    /* Experience Section */
+    .experience-timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 3rem auto;
+    }
+
+    .experience-timeline::before {
+      content: '';
+      position: absolute;
+      left: 2rem;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--bg-gradient);
+      border-radius: 3px;
+    }
+
+    .experience-item {
+      position: relative;
+      margin: 3rem 0;
+      margin-left: 5rem;
+      background: var(--card-gradient);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+    }
+
+    .experience-item::before {
+      content: '';
+      position: absolute;
+      left: -3.5rem;
+      top: 2rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      border: 4px solid var(--card-bg);
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+    }
+
+    .experience-item:hover {
+      transform: translateX(20px);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.25);
+      border-color: var(--primary-color);
+    }
+
+    .job-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .job-meta {
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .job-list {
+      list-style: none;
+    }
+
+    .job-list li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .job-list li::before {
+      content: '▶';
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+    }
+
+    /* Education Section */
+    .education-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .education-card {
+      background: var(--card-gradient);
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .education-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(102, 126, 234, 0.2), transparent);
+      animation: rotate 10s linear infinite;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .education-card:hover::before {
+      opacity: 1;
+    }
+
+    .education-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary-color);
+      box-shadow: 0 30px 60px rgba(102, 126, 234, 0.25);
+    }
+
+    .education-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .school-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .degree {
+      color: var(--text-light);
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--darker-color);
+      color: var(--light-color);
+      text-align: center;
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-links a {
+      color: var(--light-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Animations */
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Intersection Observer Animation */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav {
+        top: 1rem;
+        right: 1rem;
+        flex-direction: column;
+      }
+
+      .nav a {
+        text-align: center;
+        font-size: 0.8rem;
+      }
+
+      .section {
+        padding: 4rem 1rem;
+      }
+
+      .projects-grid,
+      .skills-grid,
+      .education-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-timeline::before {
+        left: 1rem;
+      }
+
+      .experience-item {
+        margin-left: 3rem;
+      }
+
+      .experience-item::before {
+        left: -2.5rem;
+      }
+
+      .social-links {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--light-color);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Parv Arora</h1>
+      <p class="subtitle">AI Engineer & Machine Learning Specialist</p>
+      <p class="location"><i class="fas fa-map-marker-alt"></i> Toronto, Ontario</p>
+      
+      <div class="social-links">
+        <a href="mailto:aroraparv24@gmail.com" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://github.com/parvarora2001" target="_blank" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/parv2806/" target="_blank" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="Resume _Parv ARORA.pdf" download title="Download Resume">
+          <i class="fas fa-file-download"></i>
+        </a>
+      </div>
+    </div>
+    
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section animate-on-scroll">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-content">
+      <p class="about-text">
+        I'm a results-driven AI Engineer with hands-on experience building real-world machine learning systems. 
+        I specialize in NLP, cloud-native ML pipelines, and scalable deployment using tools like GCP, TensorFlow, 
+        Hugging Face, and LangChain. I love solving hard problems in finance, healthcare, and beyond.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section animate-on-scroll">
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-category">Languages</div>
+        <div class="skill-items">Python, JavaScript, SQL, Java (basic)</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Frameworks</div>
+        <div class="skill-items">FastAPI, Flask, React</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">ML & AI Tools</div>
+        <div class="skill-items">TensorFlow, PyTorch, scikit-learn, XGBoost, Hugging Face, LangChain</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">DevOps & Tools</div>
+        <div class="skill-items">Docker, Git, CI/CD, GitHub Actions</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Cloud Platforms</div>
+        <div class="skill-items">GCP (Vertex AI, BigQuery), Azure (basic)</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-category">Data & Visualization</div>
+        <div class="skill-items">Streamlit, Power BI, Tableau, spaCy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section animate-on-scroll">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-content">
+          <h3 class="project-title">Cloud-Native Resume Screening</h3>
+          <ul class="project-list">
+            <li> Built an end-to-end data screening platform using GCP tools (BigQuery, Cloud Functions, MLflow), scoring resume-job fit using structured
+                embeddings.</li>
+            <li>Designed ingestion pipelines with support for docx and PDF, and generated metadata to support explanation generation and data traceability</li>
+            <li>Ensured data quality and integrity for >1,000 resume entries using preprocessing and validation logic.</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-content">
+          <h3 class="project-title">AI for Agriculture Productivity</h3>
+          <ul class="project-list">
+            <li>Engineered machine learning models (XGBoost, Random Forest) that boosted crop yield prediction accuracy by 40% across diverse soil and climate conditions.</li>
+            <li>Integrated and cleaned over a decade of agricultural, weather, and soil data to generate precision farming insights tailored to regional patterns.
+            <li>Delivered real-time planning dashboards in Power BI, improving decision-making efficiency for stakeholders by over 50%.</li>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-content">
+          <h3 class="project-title">Smart Invoice Intelligence System</h3>
+          <ul class="project-list">
+            <li>Designed an XGBoost-based module to predict late payments across 50K+ invoices.</li>
+            <li>Built a scalable full-stack platform using Python, Java, React, and Docker with CI/CD.</li>
+            <li>Enabled 30% reduction in delinquent payments and 99.9% system uptime.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-content">
+          <h3 class="project-title">Banking Customer Complaint Classification</h3>
+          <ul class="project-list">
+            <li>Built a topic classification system using TF-IDF and Random Forest to label real-world banking complaints from a public dataset.</li>
+            <li>Deployed the model via FastAPI on GCP , with secure API key authentication and modular prediction and topic endpoints.</li>
+            <li>Automated complaint triage to reduce manual review time and shorten customer wait times for resolution.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="section animate-on-scroll">
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="experience-timeline">
+      <div class="experience-item">
+        <h3 class="job-title">President – AI Seneca</h3>
+        <p class="job-meta">Toronto, CA • Jan 2025 – Present</p>
+        <ul class="job-list">
+          <li>Hosted 20+ workshops and hackathons; grew club by 50%</li>
+          <li>Managed $3K budget; increased sponsorships by 60%</li>
+        </ul>
+      </div>
+      
+      <div class="experience-item">
+        <h3 class="job-title">IT Trainee – FIS Global</h3>
+        <p class="job-meta">Bangalore, IN • Sep 2023 – Dec 2023</p>
+        <ul class="job-list">
+          <li>Reduced transaction error rates by 25% through code reviews</li>
+          <li>Cut ETL time by 40% via Python script optimization</li>
+        </ul>
+      </div>
+      
+      <div class="experience-item">
+        <h3 class="job-title">ML Intern – HighRadius</h3>
+        <p class="job-meta">Punjab, IN • Jan 2022 – May 2022</p>
+        <ul class="job-list">
+          <li>Built invoice processing system with 30% more accurate cash-flow forecasting</li>
+          <li>Achieved 99% uptime with automated test suite</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="section animate-on-scroll">
+    <h2 class="section-title">Education</h2>
+    <div class="education-cards">
+      <div class="education-card">
+        <div class="education-content">
+          <div class="school-name">Seneca College</div>
+          <div class="degree">Postgraduate in Artificial Intelligence (2025)</div>
+          <div class="degree">Business Analytics (2024)</div>
+        </div>
+      </div>
+      
+      <div class="education-card">
+        <div class="education-content">
+          <div class="school-name">Chandigarh University</div>
+          <div class="degree">B.E. in Computer Science (2023)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="mailto:aroraparv24@gmail.com">Contact</a>
+        <a href="https://github.com/parvarora2001">GitHub</a>
+        <a href="https://www.linkedin.com/in/parv2806/">LinkedIn</a>
+      </div>
+      <p>&copy; 2025 Parv Arora. Crafted with passion and innovation.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with animate-on-scroll class
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Add floating particles effect
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.style.position = 'fixed';
+      particle.style.width = Math.random() * 4 + 'px';
+      particle.style.height = particle.style.width;
+      particle.style.background = 'rgba(102, 126, 234, 0.4)';
+      particle.style.borderRadius = '50%';
+      particle.style.pointerEvents = 'none';
+      particle.style.zIndex = '1';
+      particle.style.left = Math.random() * window.innerWidth + 'px';
+      particle.style.top = window.innerHeight + 'px';
+      
+      document.querySelector('.hero').appendChild(particle);
+      
+      const animation = particle.animate([
+        { transform: 'translateY(0px)', opacity: 1 },
+        { transform: `translateY(-${window.innerHeight + 100}px)`, opacity: 0 }
+      ], {
+        duration: Math.random() * 3000 + 2000,
+        easing: 'linear'
+      });
+      
+      animation.onfinish = () => particle.remove();
+    }
+
+    // Create particles periodically
+    if (window.innerWidth > 768) {
+      setInterval(createParticle, 300);
+    }
+
+    // Add parallax effect to hero section
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      
+      if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+      }
+      
+      if (scrollIndicator) {
+        scrollIndicator.style.opacity = Math.max(0, 1 - scrolled / 300);
+      }
+    });
+
+    // Add typing effect to subtitle
+    function typeWriter(element, text, speed = 100) {
+      let i = 0;
+      element.textContent = '';
+      
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+      
+      type();
+    }
+
+    // Initialize typing effect after page loads
+    window.addEventListener('load', () => {
+      const subtitle = document.querySelector('.subtitle');
+      if (subtitle) {
+        const originalText = subtitle.textContent;
+        setTimeout(() => {
+          typeWriter(subtitle, originalText, 80);
+        }, 1000);
+      }
+    });
+
+    // Add hover effects for project cards
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-15px) rotateX(5deg)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) rotateX(0)';
+      });
+    });
+
+    // Add skill card animation delays
+    document.querySelectorAll('.skill-card').forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.1}s`;
+    });
+  </script>
+</body>
+</html>
