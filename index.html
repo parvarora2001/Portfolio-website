@@ -132,23 +132,36 @@
     .d4{transition-delay:.24s}.d5{transition-delay:.3s}.d6{transition-delay:.36s}
 
     /* ── ABOUT ── */
-    .about-lay{display:grid;grid-template-columns:3fr 2fr;gap:5rem;align-items:start}
-    .ap{font-size:1rem;line-height:1.9;color:var(--ink2);margin-bottom:1.3rem}
+    /* Summary headline card */
+    .summary-card{position:relative;background:var(--navy);border-radius:8px;padding:2.5rem 3rem;margin-bottom:3.5rem;overflow:hidden}
+    .summary-card::after{content:'';position:absolute;right:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,var(--blue),transparent)}
+    .summary-quote{position:absolute;top:.8rem;left:2rem;font-family:var(--dp);font-size:5rem;line-height:1;color:rgba(255,255,255,.07);pointer-events:none;user-select:none}
+    .summary-lead{font-family:var(--dp);font-weight:400;font-size:clamp(1.1rem,2vw,1.35rem);line-height:1.75;color:rgba(255,255,255,.85);position:relative;z-index:1;font-style:italic}
+    .summary-lead .em{color:var(--blue-lt);font-style:normal}
+
+    .about-lay{display:grid;grid-template-columns:3fr 2fr;gap:4.5rem;align-items:start}
+    .ap{font-size:.97rem;line-height:1.95;color:var(--ink2);margin-bottom:1.3rem}
     .ap:last-child{margin-bottom:0}
     .em{color:var(--blue);font-weight:600}
     .et{color:var(--ink);font-weight:600}
 
-    .aside{display:flex;flex-direction:column;gap:1.5rem}
-    .award{padding:1.6rem;background:var(--white);border:1px solid var(--border);border-radius:6px;border-left:3px solid var(--blue);box-shadow:var(--shadow);transition:box-shadow .3s}
+    .aside{display:flex;flex-direction:column;gap:1.4rem}
+    .award{padding:1.5rem;background:var(--white);border:1px solid var(--border);border-radius:6px;border-left:3px solid var(--blue);box-shadow:var(--shadow);transition:box-shadow .3s}
     .award:hover{box-shadow:var(--shadow-h)}
-    .awi{font-size:1.3rem;margin-bottom:.6rem}
-    .awt{font-family:var(--dp);font-weight:400;font-size:1rem;color:var(--ink);margin-bottom:.3rem}
-    .aws{font-size:.82rem;color:var(--dim);line-height:1.6}
-    .srow{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
-    .sbox{padding:1.3rem;background:var(--white);border:1px solid var(--border);border-radius:6px;text-align:center;box-shadow:var(--shadow);transition:border-color .3s,box-shadow .3s}
+    .awi{font-size:1.2rem;margin-bottom:.5rem}
+    .awt{font-family:var(--dp);font-weight:400;font-size:.95rem;color:var(--ink);margin-bottom:.3rem}
+    .aws{font-size:.8rem;color:var(--dim);line-height:1.65}
+    .srow{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+    .sbox{padding:1.2rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:6px;text-align:center;box-shadow:var(--shadow);transition:border-color .3s,box-shadow .3s}
     .sbox:hover{border-color:var(--blue);box-shadow:var(--shadow-h)}
-    .sn{font-family:var(--dp);font-weight:400;font-size:1.9rem;color:var(--navy);line-height:1}
-    .sl2{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
+    .sn{font-family:var(--dp);font-weight:400;font-size:1.7rem;color:var(--navy);line-height:1}
+    .sl2{font-family:var(--mono);font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;line-height:1.4}
+    /* Core strengths card */
+    .strengths-card{background:var(--off2);border:1px solid var(--border);border-radius:6px;padding:1.4rem 1.6rem}
+    .strengths-title{font-family:var(--sb);font-weight:600;font-size:.8rem;color:var(--ink);letter-spacing:.03em;margin-bottom:1rem;text-transform:uppercase}
+    .strengths-list{list-style:none;display:flex;flex-direction:column;gap:.65rem}
+    .strengths-list li{font-size:.82rem;color:var(--ink2);display:flex;align-items:center;gap:.7rem;line-height:1.4}
+    .strengths-list li i{color:var(--blue);font-size:.6rem;flex-shrink:0}
 
     /* ── SKILLS ── */
     .skwrap{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
@@ -291,7 +304,7 @@
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="mailto:aroraparv24@gmail.com?subject=Hello%20Parv&body=Hi%20Parv%2C%0A%0A" class="nav-cta">Let's Talk</a>
+    <a href="/cdn-cgi/l/email-protection#6405160b1605140516125650240309050d084a070b095b1711060e010710592c0108080b4156543405161242060b001d592c0d41565434051612415627415425415425" class="nav-cta">Let's Talk</a>
   </nav>
 
   <!-- HERO -->
@@ -326,39 +339,101 @@
   <!-- ABOUT -->
   <section class="sec sec-white" id="about">
     <div class="sl rv"><span class="snum">01 / About</span><div class="srule"></div></div>
-    <h2 class="stitle rv">Who I Am</h2>
+    <h2 class="stitle rv">Professional Summary</h2>
+
+    <!-- Headline summary card -->
+    <div class="summary-card rv d1">
+      <div class="summary-quote">&ldquo;</div>
+      <p class="summary-lead">
+        AI Engineer specialising in <span class="em">production-ready Agentic AI, RAG pipelines, and LLM fine-tuning</span> —
+        with a track record of shipping systems that reduce manual effort, accelerate decisions, and scale reliably in enterprise environments.
+      </p>
+    </div>
+
     <div class="about-lay">
-      <div class="rv d1">
+      <div class="rv d2">
+
+        <!-- Paragraph 1: Identity + Core Credibility Signal -->
         <p class="ap">
-          I'm an AI Engineer with over <span class="em">two years of experience</span> building production-ready
-          <span class="em">Agentic AI and RAG pipelines</span> using Python, FastAPI, and vector search.
-          I specialise in fine-tuning models with <span class="et">LoRA</span> and optimising for reliability and
-          cost — work that earned me <span class="em">3rd Place and Crowd Favourite</span> at the
-          Google Cloud × AI Tinkerers Hackathon.
+          With over <span class="em">two years of hands-on engineering experience</span>, I design and deploy
+          AI systems end-to-end — from vector search and retrieval-augmented generation to LoRA fine-tuned models
+          running on cloud infrastructure. When enterprise teams faced the challenge of qualifying hundreds of
+          inbound leads without scaling headcount, I built an <span class="et">Azure-hosted voice agent</span>
+          that processed 500+ leads per week at under five seconds per response, tripling appointment conversion
+          rates from 4% to 14%.
         </p>
+
+        <!-- Paragraph 2: Scope of Impact + Technical Depth -->
         <p class="ap">
-          As <span class="et">President of the Seneca AI Club</span>, I built a community of 100+ developers by
-          organising technical workshops and events designed to turn AI research into functional, deployable code.
-          The club became a launchpad for hands-on learning in LLMs, MLOps, and real-world AI applications.
+          Across production deployments in real estate, recruiting, and financial services, I have consistently
+          applied <span class="em">MLOps best practices</span> — containerised services on GCP Cloud Run, automated
+          validation pipelines, and structured model monitoring — to ensure that AI systems remain stable and
+          measurable after go-live, not just at demo. My work on a <span class="et">GenAI resume screening platform</span>
+          delivered a 20% improvement in candidate-to-role matching accuracy by combining Gemini 2 prompt engineering
+          with MiniLM embeddings and structured fit scoring.
         </p>
+
+        <!-- Paragraph 3: Leadership + Community Credibility -->
         <p class="ap">
-          I'm now focused on applying my expertise in <span class="em">MLOps and automated pipeline development</span>
-          to help build scalable, enterprise-grade AI systems — particularly in domains where intelligent automation
-          drives meaningful business outcomes.
+          Beyond individual contribution, I led the <span class="et">Seneca AI Club</span> as President —
+          growing an active community of 100+ developers, running technical workshops that bridged academic AI
+          research and deployable code, and representing the club at the
+          <span class="em">Google Cloud × AI Tinkerers Hackathon</span>, where my team placed 3rd overall
+          and won the Crowd Favourite award for V.I.S.I.O.N, a multimodal agent built on Google ADK and Gemini 2.0 Flash.
         </p>
+
+        <!-- Paragraph 4: Forward-looking / Value proposition -->
+        <p class="ap">
+          I am now targeting <span class="em">AI engineering and MLOps roles</span> where I can apply this
+          foundation to build scalable, enterprise-grade pipelines — particularly in organisations where the
+          challenge is not prototyping AI, but making it reliable, observable, and valuable in production.
+        </p>
+
       </div>
-      <div class="aside rv d2">
+
+      <!-- Sidebar -->
+      <div class="aside rv d3">
         <div class="award">
           <div class="awi">🏆</div>
           <div class="awt">Google Cloud × AI Tinkerers</div>
-          <div class="aws">3rd Place &amp; Crowd Favourite — Built V.I.S.I.O.N, a multimodal AI agent using Google ADK, Gemini 2.0 Flash, and Vertex AI.</div>
+          <div class="aws">
+            3rd Place &amp; Crowd Favourite — led the engineering of V.I.S.I.O.N,
+            a multimodal agent that reads on-screen code from YouTube frames and syncs
+            it to a developer's local environment in real time.
+          </div>
         </div>
+
         <div class="srow">
-          <div class="sbox"><div class="sn">2+</div><div class="sl2">Yrs Experience</div></div>
-          <div class="sbox"><div class="sn">100+</div><div class="sl2">AI Club Devs</div></div>
-          <div class="sbox"><div class="sn">RAG</div><div class="sl2">Specialist</div></div>
-          <div class="sbox"><div class="sn">LoRA</div><div class="sl2">Fine-Tuning</div></div>
+          <div class="sbox">
+            <div class="sn">500+</div>
+            <div class="sl2">Leads / Week Automated</div>
+          </div>
+          <div class="sbox">
+            <div class="sn">3×</div>
+            <div class="sl2">Booking Conversion Lift</div>
+          </div>
+          <div class="sbox">
+            <div class="sn">20%</div>
+            <div class="sl2">Matching Accuracy Gain</div>
+          </div>
+          <div class="sbox">
+            <div class="sn">100+</div>
+            <div class="sl2">Developers Led</div>
+          </div>
         </div>
+
+        <!-- Core strengths list -->
+        <div class="strengths-card">
+          <div class="strengths-title">Core Strengths</div>
+          <ul class="strengths-list">
+            <li><i class="fas fa-check"></i> Agentic AI &amp; RAG Architecture</li>
+            <li><i class="fas fa-check"></i> LLM Fine-tuning with LoRA</li>
+            <li><i class="fas fa-check"></i> MLOps &amp; Cloud Deployment (GCP, Azure)</li>
+            <li><i class="fas fa-check"></i> End-to-end Pipeline Engineering</li>
+            <li><i class="fas fa-check"></i> FastAPI · LangChain · LangGraph</li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </section>
@@ -511,9 +586,9 @@
       <p class="cintro rv">I'm always open to new opportunities, collaborations, or a conversation about AI. Reach out through any of the channels below — I'd love to hear from you.</p>
       <div class="cgrid">
         <div class="clinks rv d1">
-          <a href="mailto:aroraparv24@gmail.com?subject=Hello%20Parv&body=Hi%20Parv%2C%0A%0A" class="clink">
+          <a href="/cdn-cgi/l/email-protection#67061508150617061511555327000a060e0b4904080a581412050d0204135a2f020b0b0842555737061511410508031e5a2f0e42555737061511425524425726425726" class="clink">
             <div class="clico"><i class="fas fa-envelope"></i></div>
-            <div class="cltxt"><div class="cllbl">Email</div><div class="clval">aroraparv24@gmail.com</div></div>
+            <div class="cltxt"><div class="cllbl">Email</div><div class="clval"><span class="__cf_email__" data-cfemail="0160736e736071607377333541666c60686d2f626e6c">[email&#160;protected]</span></div></div>
             <i class="fas fa-arrow-right clarr"></i>
           </a>
           <a href="tel:+14378586377" class="clink">
@@ -581,7 +656,7 @@
     </nav>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   /* CURSOR */
   const cdot=document.getElementById('cdot'),cring=document.getElementById('cring');
   let mx=0,my=0,rx=0,ry=0;
@@ -673,12 +748,4 @@
     const fmsg=document.getElementById('fmsg');
     if(!name&&!email&&!subj&&!msg){fmsg.textContent='Please fill in at least one field.';fmsg.style.color='var(--muted)';return}
     const sub=encodeURIComponent(subj||`Portfolio enquiry from ${name||'Visitor'}`);
-    const body=encodeURIComponent(`Hi Parv,\n\n${msg||'(no message provided)'}\n\nFrom: ${name||'Anonymous'}${email?`\nReply to: ${email}`:''}`);
-    window.location.href=`mailto:aroraparv24@gmail.com?subject=${sub}&body=${body}`;
-    fmsg.textContent='✓ Opening your mail client…';
-    fmsg.style.color='var(--blue)';
-    setTimeout(()=>fmsg.textContent='',4000);
-  });
-  </script>
-</body>
-</html>
+    const body=encodeU
